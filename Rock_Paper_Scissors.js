@@ -1,53 +1,56 @@
-var Rock = document.getElementById('Rock').addEventListener('click', run);
-var Paper = document.getElementById('Paper').addEventListener('click', run);
-var Scissors = document.getElementById('Scissors').addEventListener('click', run);
+const playerChoiceRock = document.querySelector('#rock');
+const playerChoicePaper = document.querySelector('#paper');
+const playerChoiceScissors = document.querySelector('#scissors');
 
-var computerChoice;
-var playerChoice;
+const paraUserResult = document.querySelector('#userResult');
+const paraComputerResult = document.querySelector('#computerResult');
 
-var player = document.getElementById('player');
-var computer = document.getElementById('computer');
-var outcome = document.getElementById('outcome');
+// Generate random Computer selection
+let computerSelection = () => {
+  let randomCount = Math.random();
 
-function run() {
-  	playerChoice = this.innerText;
-  	computerGamble();
-  	compare();
+  if (randomCount < 0.34) {
+    paraComputerResult.textContent = 'Computer selects rock';
+    return 'rock';
+  } else if (randomCount > 0.34 && randomCount < 0.68) {
+    paraComputerResult.textContent = 'Computer selects paper';
+    return 'paper';
+  } else {
+    paraComputerResult.textContent = 'Computer selects scissors';
+    return 'scissors';
+  }
 }
 
-function computerGamble() {
-  	var dice = Math.random();
-	if (dice <= 0.33) {
-		computerChoice = "Rock";
-    } else if (dice > 0.33 && dice <= 0.66) {
-    	computerChoice = "Paper";
-    } else {
-    	computerChoice = "Scissors";
-    }
- }
 
- function compare() {
- 	player.innerHTML = "You have chosen " + playerChoice;
- 	computer.innerHTML = "Computer chooses " + computerChoice;
+// Compare the player choice versus the computer choice and return the result
+let playRound = (playerSelection, computerSelection) => {
+  if (playerSelection === computerSelection) {
+    return 'It is a tie';
+  } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+    return 'Computer wins!';
+  } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+    return 'You win!';
+  } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+    return 'You win!';
+  } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+    return 'Computer wins!';
+  } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+    return 'You win!';
+  } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+    return 'You lose!';
+  }
+}
 
- 	if (playerChoice == computerChoice) {
- 		outcome.innerHTML = "Stalemate";
+// Event listener added for button selection
 
- 	} else if (playerChoice === "Rock" && computerChoice === "Paper") {
- 		outcome.innerHTML = "Defeat!";
- 	} else if (playerChoice === "Rock" && computerChoice === "Scissors") {
- 		outcome.innerHTML = "Victory!";
+    playerChoiceRock.addEventListener('click', () => {
+      paraUserResult.textContent = playRound('rock', computerSelection());
+      })
 
-
- 	} else if (playerChoice === "Paper" && computerChoice === "Rock") {
- 		outcome.innerHTML = "Victory!";
- 	} else if (playerChoice === "Paper" && computerChoice === "Scissors") {
- 		outcome.innerHTML = "Defeat!";
-
-
- 	} else if (playerChoice === "Scissors" && computerChoice === "Rock") {
- 		outcome.innerHTML = "Defeat!";
- 	} else if (playerChoice === "Scissors" && computerChoice === "Paper") {
- 		outcome.innerHTML = "Victory!";
- 	}
- } 
+    playerChoicePaper.addEventListener('click', () => {
+      paraUserResult.textContent = playRound('paper', computerSelection());
+    })
+   
+    playerChoiceScissors.addEventListener('click', () => {
+      paraUserResult.textContent = playRound('scissors', computerSelection());
+    })

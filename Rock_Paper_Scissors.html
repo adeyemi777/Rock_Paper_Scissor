@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Rock Paper Scissors </title>
-
-
-
-      <link rel="stylesheet" href="Rock_Paper_Scissors.css">
-
-
+  <title>Choose Your Weapon</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="Rock_Paper_Scissors.css">
 </head>
 
 <body>
-  <h1> Rock, Paper, Scissors </h1> 
-<h2>Choose your weapon...</h2>
 
-<div class="button-box">
-	<button id="Rock">Rock</button>
-
-	<button id="Paper">Paper</button>
-
-    <button id="Scissors">Scissors</button>
+  <div class="headerContainer">
+    <h1>Choose Your Weapon</h1>
     
-    
-</div>
+  </div>
 
-<h5 id="player"></h5>
-<h5 id="computer"></h5>
 
-<h3 id="outcome"></h3>
+  <div class="results">
+    <p id="computerResult"></p><br />
+    <p id="userResult"></p>
+    <p id="gameResult"></p> <!-- Code not yet Utilised -->
+  </div>
 
-    <script src="Rock_Paper_Scissors.js"></script>
+<!-- Buttons for UserChoice -->
+  <div class="buttons">
+    <button id="rock">ROCK</button>
+    <button id="paper">PAPER</button>
+    <button id="scissors">SCISSORS</button>
+  </div>
 
+  <footer>
+    <p>Choose Your Weapon by Jayeoba Adeyemi</p>
+  </footer>
+
+  <script src="Rock_Paper_Scissors.js"></script>
 </body>
 </html>
